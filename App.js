@@ -7,7 +7,7 @@ const App=()=>{
   const [input, setInput] = useState('');
 
   const addTodo=()=>{
-    setTodos([...todos,{id:Date.now().toString, text:input}])
+    setTodos([...todos,{id:Date.now().toString(), text:input}])
     setInput('')
   }
  return(
@@ -15,26 +15,22 @@ const App=()=>{
       <Text style = {styles.header}TODO APP></Text>
           <TextInput style = {styles.input}
           placeholder="Enter a Todo"
-          value="input"
+          value={input}
           onChange={setInput}
           ></TextInput>
           <Button title="Add Todo"
           onPress={addTodo}></Button>
-          <FlatList>
+          <FlatList
           data = {todos}
           keyExtractor = {item => item.id}
           renderItem = {({item}) =>(
-            <View>
+            <View style={styles.container}>
               <Text>{item.text}</Text>
             </View>
-
+        )}
+                >
             </FlatList>
-
-          )
-          
-          
-          
-    </View>
+       </View>
   )
 }
 const styles=StyleSheet.create({
